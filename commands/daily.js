@@ -17,7 +17,7 @@ module.exports = {
         if (timeLeft > 0) {
             await interaction.deferReply({ ephemeral: true });
             const { hours, minutes, seconds } = parseMilliseconds(timeLeft);
-            await interaction.editReply(`Claim your next daily in ${hours} hrs ${minutes} min ${seconds} sec`);
+            return await interaction.editReply(`Claim your next daily in ${hours} hrs ${minutes} min ${seconds} sec`);
         } else {
 
             await interaction.deferReply();
@@ -38,7 +38,7 @@ module.exports = {
             } catch (err) {
                 console.log(err);
             }
-            await interaction.editReply(`You redeemed ${randomAmt} coins!`);
+            return await interaction.editReply(`You redeemed ${randomAmt} coins!`);
         }
 
     },
