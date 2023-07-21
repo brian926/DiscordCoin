@@ -23,7 +23,7 @@ module.exports = {
         const { balance } = profileData;
 
         if (balance < donateAmt) {
-            await interaction.deferReply({ ephmeral: true })
+            await interaction.deferReply({ ephemeral: true })
             return await interaction.editReply(`You do not have enough coins. Balance is ${balance} and donation amount is ${donateAmt}`)
         } else {
 
@@ -39,7 +39,7 @@ module.exports = {
             );
 
             if (!receiveUserData) {
-                await interaction.deferReply({ ephmeral: true });
+                await interaction.deferReply({ ephemeral: true });
                 return await interaction.editReply(`${receiveUser.username} is not in the server`);
             }
 
