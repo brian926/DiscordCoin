@@ -8,6 +8,6 @@ module.exports = {
         const { balance } = profileData;
         const userName = interaction.user.username;
 
-        await interaction.reply(`${userName} has ${balance} coins`);
+        await interaction.reply({ ephemeral: true, content: `${userName} has ${balance} coins` });
     },
 };
