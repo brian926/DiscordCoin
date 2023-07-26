@@ -5,6 +5,9 @@ const profileSchema = new mongoose.Schema({
     serverId: { type: String, require: true },
     balance: { type: Number, default: 10 },
     dailyLastUsed: { type: Number, default: 0 },
+    weeklyLastUsed: { type: Number, default: 0 },
+    monthlyLastUsed: { type: Number, default: 0 },
+    coinflipLastUsed: { type: Number, default: 0 },
 });
 
 const model = mongoose.model("dinodb", profileSchema);

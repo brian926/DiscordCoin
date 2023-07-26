@@ -1,4 +1,10 @@
 {
     "dailyMin": 1,
-    "dailyMax": 10
+    "dailyMax": 10,
+    "weeklyMin": 1,
+    "weeklyMax": 100,
+    "monthlyMin": 1,
+    "monthlyMax": 10,
+    "coinflipRewardMin": 1,
+    "coinflipRewardMax": 5
 }
