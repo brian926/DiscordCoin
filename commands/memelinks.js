@@ -22,8 +22,15 @@ module.exports = {
                         let data = meme[0].data.children[0].data
 
                         let title = data.title;
-                        let image = data.url;
                         let author = data.author;
+                        let isVideo = data.is_video;
+
+                        if (isVideo == true) {
+                            console.log("--> Failed to send reddit post due to 'is_video == true'")
+                            return await interaction.reply({ ephemeral: true, content: "This post is a video and I can't display it, sorry..." });
+                        }
+
+                        let image = data.url;
 
                         const embed = new EmbedBuilder()
                             .setColor("Blurple")
