@@ -10,3 +10,12 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     ports:
       - 27017:27017
+    volumes:
+      - ./data/db:/data/db
+
+  bot:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
