@@ -5,6 +5,7 @@ module.exports = {
     name: Events.MessageCreate,
     async execute(interaction) {
         const { guild, author } = interaction;
+        if (author.bot) return;
 
         // Get user db info and pass to command
         let profileData;
@@ -20,11 +21,12 @@ module.exports = {
             console.log(err);
         }
 
-        const channel = message.channel;
+        const channel = interaction.message;
         const give = 1;
 
+        let data;
         try {
-            const data = await levelModel.findOne({ userId: author.id, serverId: guild.id });
+            data = await levelModel.findOne({ userId: author.id, serverId: guild.id });
         } catch (err) {
             console.log(err);
         }

@@ -1,6 +1,6 @@
-const Schema = require("mongoose");
+const mongoose = require("mongoose");
 
-const levelSchema = new Schema({
+const levelSchema = new mongoose.Schema({
     serverId: { type: String, require: true },
     userId: { type: String, require: true, unique: true },
     xp: { type: Number, default: 0 },
