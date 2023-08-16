@@ -1,4 +1,5 @@
 const { Events, EmbedBuilder } = require("discord.js");
+const { REPORT_CHANNEL_ID: reportChannel } = process.env;
 
 module.exports = {
     name: Events.InteractionCreate,
@@ -13,7 +14,7 @@ module.exports = {
             const member = interaction.member;
             const server = interaction.guild.id || "No server provided";
 
-            const channel = await interaction.client.channels.cache.get("961761430728736861");
+            const channel = await interaction.client.channels.cache.get(reportChannel);
 
             const embed = new EmbedBuilder()
                 .setColor("Blurple")

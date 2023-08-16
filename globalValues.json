@@ -1,10 +1,12 @@
 {
     "dailyMin": 1,
-    "dailyMax": 10,
+    "dailyMax": 7,
     "weeklyMin": 1,
-    "weeklyMax": 100,
+    "weeklyMax": 50,
     "monthlyMin": 1,
-    "monthlyMax": 10,
+    "monthlyMax": 200,
     "coinflipRewardMin": 1,
-    "coinflipRewardMax": 5
+    "coinflipRewardMax": 5,
+    "customRoleCost": 5,
+    "custonRoleEdit": 10
 }

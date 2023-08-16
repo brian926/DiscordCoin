@@ -18,19 +18,6 @@ module.exports = {
                         .setMinValue(2)
                         .setRequired(true)
                 )
-        )
-        .addSubcommand((subcommand) =>
-            subcommand
-                .setName("notthreedoors")
-                .setDescription("Double, half, or lose your coins")
-                .addIntegerOption((option) =>
-                    option
-                        .setName("amount")
-                        .setDescription("Amount of coins to gamble")
-                        .setMaxValue(100)
-                        .setMinValue(2)
-                        .setRequired(true)
-                )
         ),
     async execute(interaction, profileData) {
         const { username, id } = interaction.user;
@@ -151,10 +138,5 @@ module.exports = {
                 });
             }
         }
-
-        if (gambleCommand === "notthreedoors") {
-            await interaction.reply("Not three doors..");
-        }
-
     },
 };

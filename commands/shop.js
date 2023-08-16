@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const profileModel = require("../models/profileSchema");
-const { customRoleCost, custonRoleEdit } = require("../shopPrices.json");
+const { customRoleCost, custonRoleEdit } = require("../globalValues.json");
 
 module.exports = {
     data: new SlashCommandBuilder()

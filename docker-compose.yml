@@ -19,3 +19,7 @@ services:
       - 8080:8080
     depends_on:
       - mongo
+    environment:
+      - WAIT_HOSTS=mongo:27017
+      - WAIT_BEFORE_HOSTS=60
+      - WAIT_SLEEP_INTERVAL=30
