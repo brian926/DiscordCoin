@@ -20,7 +20,7 @@ module.exports = {
             const { hours, minutes, seconds } = parseMilliseconds(timeLeft);
             return await interaction.editReply(`Claim your next daily in ${hours} hrs ${minutes} min ${seconds} sec`);
         } else {
-            const randomAmt = Math.floor(Math.random() * (dailyMax - dailyMin + 1) + dailyMin);
+            const randomAmt = Math.floor(Math.random() * (dailyMax + 1)) + dailyMin;
             try {
                 await profileModel.findOneAndUpdate(
                     { userId: id },
