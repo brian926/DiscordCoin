@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const levelModel = require("../models/levelSchema");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -32,6 +33,34 @@ module.exports = {
                     }
 
                     let image = data.url;
+                    const give = 1;
+                    let levelXp;
+
+                    try {
+                        levelXp = await levelModel.findOne({ userId: interaction.user.id });
+                    } catch (err) {
+                        console.log(err);
+                    }
+
+                    const requireXP = levelXp.level * levelXp.level
+                    if (levelXp.xp + give >= requireXP) {
+                        levelXp.xp += give;
+                        levelXp.level += 1;
+
+                        try {
+                            await levelXp.save();
+                        } catch (err) {
+                            console.log(err)
+                        }
+                    } else {
+                        levelXp.xp += give;
+
+                        try {
+                            await levelXp.save();
+                        } catch (err) {
+                            console.log(err)
+                        }
+                    }
 
                     const embed = new EmbedBuilder()
                         .setColor("Blurple")
