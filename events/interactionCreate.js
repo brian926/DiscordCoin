@@ -6,7 +6,7 @@ module.exports = {
     async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;
 
-        // Get user db info and pass to command
+        // Get user db info and pass user data to slash command
         let profileData;
         try {
             profileData = await profileModel.findOne({ userId: interaction.user.id });

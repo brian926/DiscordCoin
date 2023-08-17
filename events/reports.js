@@ -1,6 +1,7 @@
 const { Events, EmbedBuilder } = require("discord.js");
 const { REPORT_CHANNEL_ID: reportChannel } = process.env;
 
+// On report, send the report to the channel given below
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {

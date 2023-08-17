@@ -16,6 +16,7 @@ module.exports = {
         const link = linkPass[0]
 
         try {
+            // Get Reddit link, split on parameters, and retrieve the png/jpeg/gif
             await fetch(`${link}/.json`)
                 .then(async r => {
                     let meme = await r.json();
@@ -32,36 +33,45 @@ module.exports = {
                         return await interaction.reply({ ephemeral: true, content: "This post is a video and I can't display it, sorry... Try posting the link to display a video player" });
                     }
 
-                    let image = data.url;
+                    let profileData;
                     const give = 1;
-                    let levelXp;
 
+                    // Find user in the db, if no user then create one
+                    // Else, check level and if XP exceeds level then level up or just add XP
                     try {
-                        levelXp = await levelModel.findOne({ userId: interaction.user.id });
+                        profileData = await levelModel.findOne({ userId: interaction.user.id, serverId: interaction.guild.id });
+                        if (!profileData) {
+                            profileData = await levelModel.create({
+                                userId: author.id,
+                                serverId: guild.id,
+                            });
+                        } else {
+                            const requireXP = profileData.level * profileData.level * 20 + 20;
+                            if (profileData.xp + give >= requireXP) {
+                                profileData.xp += give;
+                                profileData.level += 1;
+
+                                try {
+                                    await profileData.save();
+                                } catch (err) {
+                                    console.log(err);
+                                }
+                            } else {
+                                profileData.xp += give;
+
+                                try {
+                                    await profileData.save();
+                                } catch (err) {
+                                    console.log(err)
+                                }
+                            }
+                        }
                     } catch (err) {
                         console.log(err);
                     }
 
-                    const requireXP = levelXp.level * levelXp.level
-                    if (levelXp.xp + give >= requireXP) {
-                        levelXp.xp += give;
-                        levelXp.level += 1;
-
-                        try {
-                            await levelXp.save();
-                        } catch (err) {
-                            console.log(err)
-                        }
-                    } else {
-                        levelXp.xp += give;
-
-                        try {
-                            await levelXp.save();
-                        } catch (err) {
-                            console.log(err)
-                        }
-                    }
-
+                    // Create embed for Reddit meme post
+                    let image = data.url;
                     const embed = new EmbedBuilder()
                         .setColor("Blurple")
                         .setTitle(`${title}`)

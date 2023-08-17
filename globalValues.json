@@ -7,6 +7,6 @@
     "monthlyMax": 200,
     "coinflipRewardMin": 1,
     "coinflipRewardMax": 5,
-    "customRoleCost": 5,
-    "custonRoleEdit": 10
+    "customRoleCost": 500,
+    "custonRoleEdit": 250
 }
